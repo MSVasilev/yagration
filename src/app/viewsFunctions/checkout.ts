@@ -56,7 +56,13 @@ function checkout(){
 
 
 
+
+
+
             
+
+
+
         );
 
     }
