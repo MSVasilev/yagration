@@ -1,0 +1,36 @@
+
+/* спецификация-характеристики товара */
+.productSpec{border-bottom:1px solid #F0F0F0;}
+.productSpecWrapper{
+
+  h2 {font-size: 22px; padding: 20px 0 10px 0;}
+  dl {padding: 0; margin: 0 0 10px 0;}
+  dt {font:1em Arial,Helvetica,sans-serif;min-height:100%;color:#2b2b2b;text-align: left;display:table-cell; float: left; width:50%; background: url(../images/dotted.png) 0 bottom repeat-x; span {background: #fff;}}
+  dd {font:1em Arial,Helvetica,sans-serif;color:#2b2b2b;display:table-cell;}
+  .product-spec-hint{}
+}
+
+
+.productMinicard {border: 2px solid #fec200; padding: 5px;margin-top:40px;}
+
+
+
+.productMinicardWrapper {
+  margin-top: -15px;
+  .hcenter {width:100%; display:inline-block; text-align: center;}
+  .productMinicardTitle {
+    margin: 0 auto;width:100px; background-color: #ffffff;
+  }
+  .productMinicardImage {
+    margin:15px 0;
+    height:150px;
+    width:100%;
+    display: inline-block;
+    text-align:center;
+    .vcenter {line-height: 150px;};
+    img {max-height: 130px;};
+
+  }
+  .productCardShopTitle a,.ratingStarsBlock,.phone,.delivery {margin-left: 20px;};
+  .hcenter a {margin-top: 15px; margin-bottom: 15px;}
+}

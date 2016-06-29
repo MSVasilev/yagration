@@ -1,0 +1,126 @@
+
+/* основной блок - карточка товара */
+.productCard {
+  background:#F7F7F7;
+  background:linear-gradient(to bottom,#F7F7F7 0%,#fff 10%,#fff 100%);
+  border-top:solid 1px #EAE9E8;
+
+}
+
+
+/* карточка товара - крошки, товар, рейтинг (верх) */
+.productCardHeader {
+  height:133px;
+  .breadcrumbs  {
+    color:$yaGray;
+    list-style:none;
+    margin:0 0 2px 0;
+    padding:35px 0 0 0;
+    .breadcrumbsItem{
+      display:inline-block;
+      .link:after{
+        display:inline-block;
+        height:8px;
+        padding:0 10px;
+        content:'';
+        background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwb2x5Z29uIGZpbGw9IiNiMGIwYjAiIHBvaW50cz0iMS42MDMsMC44MDIgNC43OTksNCAxLjYwMyw3LjE5NyAyLjQwMiw3Ljk5NiA2LjM5Niw0IDIuNDAyLDAuMDA0Ii8+PC9zdmc+') 7px 0 no-repeat
+      }
+    }
+    .breadcrumbsItem:last-child {
+      .link:after {display:none;}
+    }
+  }
+}
+
+/* карточка товара - фото, галерея, описание товара, соцсети, предложение (середина) */
+
+.productCardContent{
+  height:324px;
+  border-top:solid 1px #EFEEED;
+  border-bottom:solid 1px #EFEEED;
+
+
+  /* обертка предложение товара*/
+  .productCardPrice{
+    height:150px;
+    display:inline-block;padding:33px 50px 20px 0;vertical-align:top}
+  .productCardPriceHeader{line-height:2em;margin:0 0 4px}
+  .productCardPriceValue{font-size:28px;margin:0 0 6px;white-space:nowrap}
+  .productCardPriceAverage{color:#999;
+    .price_unactual_yes{display:inline;margin-right:8px}
+  }
+  .productCardShop{
+    height: 110px;
+    line-height:1.4em;
+    color:#999;
+  }
+  .productCardShopTitle {
+    a {color: #070;}
+  }
+
+
+  /* обертка спецификация+соцсети */
+  .productCardSpecList {
+    height:260px;display:inline-block;padding-top:37px;vertical-align:top;
+  }
+  .productCardSpecItem{position:relative;margin:0 0 5px}
+  .productCardSpecItem:before{content:'';position:absolute;left:-12px;top:7px;width:4px;height:4px;background:#b2b2b2;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%}
+  .productCardSpecMore{margin-top:10px}
+
+  .productCardToolbar .productCardToolbarItem{
+    display:inline-block; margin-bottom: 30px;
+    font-size:13px;width:40px;height:32px;margin:0 8px 0 0;color:#404040;border:1px solid rgba(0,0,0,.2);border-radius:3px;
+  }
+  .productCardToolbar .productCardToolbarItem:last-child{margin-right:0}
+  .productCardToolbarItem{width:27px;height:27px;cursor:pointer}
+  .productCardToolbarItem:last-child{margin-right:0}
+  .toolbarItemCompare{background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDIwIDEyIiBmaWxsPSIjYjJiMmIyIj48cGF0aCBkPSJNNC42NiAwaDcuMzR2MmgtNy4zNHpNMCAwaDIuMjh2MmgtMi4yOHpNNC42NiA1aDcuMzR2MmgtNy4zNHpNMCA1aDIuMjh2MmgtMi4yOHpNNC42NiAxMGg3LjM0djJoLTcuMzR6TTAgMTBoMi4yOHYyaC0yLjI4ek0xNi4xOC40aDEuNTR2Ni4xaC0xLjU0ek0xMy45IDIuNjhoNi4xdjEuNTRoLTYuMXoiLz48L3N2Zz4=') no-repeat 100% 50%;background-position:50% 50%}
+  .toolbarItemCompare:hover{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDIwIDEyIiBmaWxsPSIjMmIyYjJiIj48cGF0aCBkPSJNNC42NiAwaDcuMzR2MmgtNy4zNHpNMCAwaDIuMjh2MmgtMi4yOHpNNC42NiA1aDcuMzR2MmgtNy4zNHpNMCA1aDIuMjh2MmgtMi4yOHpNNC42NiAxMGg3LjM0djJoLTcuMzR6TTAgMTBoMi4yOHYyaC0yLjI4ek0xNi4xOC40aDEuNTR2Ni4xaC0xLjU0ek0xMy45IDIuNjhoNi4xdjEuNTRoLTYuMXoiLz48L3N2Zz4=')}
+  .toolbarItemShare{background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDEyIDE1IiBmaWxsPSIjYjJiMmIyIj48cGF0aCBkPSJNMTAuMzggN3Y2LjQ3aC04Ljc2di02LjQ3aC0xLjYydjhoMTJ2LTh6TTUuMzEgMi42M3Y3LjU2aDEuMzh2LTcuNTZsMS43NCAxLjc1Ljk3LS45OC0zLjQtMy40LTMuNCAzLjQuOTcuOTh6Ii8+PC9zdmc+') no-repeat 50% 50%}
+  .toolbarItemShare:hover{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDEyIDE1IiBmaWxsPSIjMmIyYjJiIj48cGF0aCBkPSJNMTAuMzggN3Y2LjQ3aC04Ljc2di02LjQ3aC0xLjYydjhoMTJ2LTh6TTUuMzEgMi42M3Y3LjU2aDEuMzh2LTcuNTZsMS43NCAxLjc1Ljk3LS45OC0zLjQtMy40LTMuNCAzLjQuOTcuOTh6Ii8+PC9zdmc+')}
+  .toolbarItemHeart{display:block;width:27px;height:27px;background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE1cHgiIHZpZXdCb3g9IjAgMCAxMDAlIDEwMCUiIGZpbGw9IiNiMmIyYjIiPjxwYXRoIGQ9Ik04IDE1TDEuNjEgOC41N0MuNTcgNy41MiAwIDYuMTggMCA0Ljc4YzAtMS4zNC41My0yLjYxIDEuNDktMy41N0MyLjI4LjQyIDMuMzIgMCA0LjQ3IDAgNS42OCAwIDYuOTUuNDcgOCAxLjI4IDkuMDUuNDcgMTAuMzIgMCAxMS41MyAwYzEuMTYgMCAyLjE5LjQyIDIuOTkgMS4yMi45NS45NiAxLjQ4IDIuMjIgMS40OCAzLjU2IDAgMS40LS41NyAyLjc0LTEuNjEgMy43OUw4IDE1ek00LjQ3IDEuODZjLS42NyAwLTEuMjQuMjMtMS42OC42OC0uNjEuNi0uOTQgMS40LS45NCAyLjI0IDAgLjkuMzggMS43OCAxLjA3IDIuNDdMOCAxMi4zN2w1LjA4LTUuMTJjLjY5LS43IDEuMDctMS41NyAxLjA3LTIuNDcgMC0uODQtLjM0LTEuNjQtLjk0LTIuMjUtLjQ1LS40NS0xLjAyLS42OC0xLjY4LS42OC0uOTcgMC0yLjA3LjUtMi44NyAxLjMxTDggMy44M2wtLjY1LS42NmMtLjgxLS44MS0xLjkxLTEuMzEtMi44OC0xLjMxeiIvPjwvc3ZnPgo=') no-repeat 50% 50%;background-size:16px 15px}
+  .toolbarItemHeart:hover{background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNSIgdmlld0JveD0iMCAwIDEwMCUgMTAwJSIgZmlsbD0iIzJiMmIyYiI+PHBhdGggZD0iTTggMTVMMS42MSA4LjU3Qy41NyA3LjUyIDAgNi4xOCAwIDQuNzhjMC0xLjM0LjUzLTIuNjEgMS40OS0zLjU3QzIuMjguNDIgMy4zMiAwIDQuNDcgMCA1LjY4IDAgNi45NS40NyA4IDEuMjggOS4wNS40NyAxMC4zMiAwIDExLjUzIDBjMS4xNiAwIDIuMTkuNDIgMi45OSAxLjIyLjk1Ljk2IDEuNDggMi4yMiAxLjQ4IDMuNTYgMCAxLjQtLjU3IDIuNzQtMS42MSAzLjc5TDggMTV6TTQuNDcgMS44NmMtLjY3IDAtMS4yNC4yMy0xLjY4LjY4LS42MS42LS45NCAxLjQtLjk0IDIuMjQgMCAuOS4zOCAxLjc4IDEuMDcgMi40N0w4IDEyLjM3bDUuMDgtNS4xMmMuNjktLjcgMS4wNy0xLjU3IDEuMDctMi40NyAwLS44NC0uMzQtMS42NC0uOTQtMi4yNS0uNDUtLjQ1LTEuMDItLjY4LTEuNjgtLjY4LS45NyAwLTIuMDcuNS0yLjg3IDEuMzFMOCAzLjgzbC0uNjUtLjY2Yy0uODEtLjgxLTEuOTEtMS4zMS0yLjg4LTEuMzF6Ii8+PC9zdmc+Cg==')}
+
+
+  /* обертка фото+галерея */
+  .productCardImage{
+    display:inline-block;
+    line-height:320px;
+    .image{max-width:100%;max-height:100%;margin:auto;cursor:zoom-in}
+    .link{display:block;height:100%}
+    background:#fff
+  }
+
+  .productCardThumbs {
+    width:50px;float:right;padding:15px 0;user-select:none;
+    ul {list-style:none;}
+  }
+  .productCardThumbsItem{
+    width:44px;height:44px;
+    display:inline-block; text-align:center;
+    border:2px solid #fff;cursor:pointer;transition:border-color .15s ease-out;
+
+
+    .image{max-width:36px;max-height:36px;margin:0;}
+    .link{line-height:40px;}
+  }
+  .productCardThumbsItem:hover,.itemSelected{border-color:#fec200}
+}
+
+
+
+/* карточка товара - ссылки, залипание панели (низ) */
+.productCardFooter {
+  .container {padding-left: 0;};
+  ul {}
+}
+.productCardFooterTab{margin-bottom: -1px;
+  display: inline-block; line-height:15px;padding:16px 5px;margin-right:10px;
+  .link:focus{outline:none}
+  .tabCount{font-size:11px;line-height:14px;padding-left:5px;color:#666}
+  .tabCount:empty{display:none}
+  a {}
+}
+.productCardFooterTab:first-child .tabText{padding-left:0}
+
+

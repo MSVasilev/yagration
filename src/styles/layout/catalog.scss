@@ -1,0 +1,37 @@
+.catalog {
+  background: #F7F7F7;
+  background: linear-gradient(to bottom,#F7F7F7 0%,#fff 10%,#fff 100%);
+  border-top: solid 1px #EAE9E8;
+
+
+}
+
+
+.catalogHeader {
+  height:133px;
+  .breadcrumbs  {
+    color:$yaGray;
+    list-style:none;
+    margin:0 0 2px 0;
+    padding:35px 0 0 0;
+    .breadcrumbsItem{
+      display:inline-block;
+      .link:after{
+        display:inline-block;
+        height:8px;
+        padding:0 10px;
+        content:'';
+        background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwb2x5Z29uIGZpbGw9IiNiMGIwYjAiIHBvaW50cz0iMS42MDMsMC44MDIgNC43OTksNCAxLjYwMyw3LjE5NyAyLjQwMiw3Ljk5NiA2LjM5Niw0IDIuNDAyLDAuMDA0Ii8+PC9zdmc+') 7px 0 no-repeat
+      }
+    }
+    .breadcrumbsItem:last-child {
+      .link:after {display:none;}
+    }
+  }
+}
+
+.catalogContents {height: 600px; }
+
+.catalogFilters {display:inline-block;vertical-align:top}
+
+

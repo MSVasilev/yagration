@@ -1,0 +1,21 @@
+/* отзывы */
+.productOpinion{
+  border-bottom:1px solid #F0F0F0;
+  .productOpinionHeader{
+    h1{font-size: 22px;padding: 0; margin:30px 10px 30px 0; float: left;}
+    a.link{color: $breadcrumbs; font-size: 22px;display: block; margin-top: 30px;}
+    a.button {padding: 0 40px; margin:30px 0 30px 0;}
+  }
+}
+.reviewUser {font:1.25em Arial,Helvetica,sans-serif;min-height:100%;color:#2b2b2b;font-weight: bold;}
+.reviewItemRate{
+  margin:20px 0;
+  .rating{float:left;padding:0;margin:0;}
+  .reviewItemLabel {color: $breadcrumbs;float: left;display:block;padding: 5px 30px;}
+  .reviewItemExperience{color: $breadcrumbs;display:block;padding: 5px 30px;}
+}
+.reviewItemTitle {font-weight:bold;float:left; padding: 0 10px 0 0;margin:0;}
+.reviewItemText {}
+.reviewItemFooter{color: $breadcrumbs;margin-top:40px; margin-bottom: 40px;}
+.reviewVotingPlus {float:left;margin-right:5px; display: block;color:green;img{margin-top:-5px;cursor:pointer;}}
+.reviewVotingMinus {display: block;color:red;img{margin-bottom:-5px;cursor:pointer;}}

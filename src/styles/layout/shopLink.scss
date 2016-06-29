@@ -1,0 +1,20 @@
+
+/* список предложений-точек */
+.shopLink {border-top: 1px solid #EFEEED; border-bottom: 1px solid #F0F0F0;}
+.shopLinkRow {background-color: #f7f7f7; .buttonText span {padding: 0 20px;}}
+.shopLinkRow:hover {background:#fff; border-bottom:1px solid #EAEAEA;border-top:1px solid #EAEAEA;}
+.shopLinkRowContainer{border-bottom:1px solid #EAEAEA;height: 126px;}
+
+.shopLinkcolumn{
+  margin: 0; padding: 30px 0 0 0;
+  .itemPrice {font-size:18px;line-height:1.4em;margin-top:2px; color: black;}
+  .itemDelivery {margin-left:22px;line-height: 20px;}
+  .buttonText {padding:0;}
+}
+
+.shopLinkFooter {
+  .container {padding: 0;}
+  height: 79px;
+  background-color: #f7f7f7;
+  button {margin:25px 0 0 0;}
+}

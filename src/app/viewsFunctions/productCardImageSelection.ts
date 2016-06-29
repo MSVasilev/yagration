@@ -1,0 +1,6 @@
+function productCardImageSelection() {
+    
+    
+    return false;
+    
+}

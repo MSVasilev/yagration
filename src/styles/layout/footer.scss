@@ -1,0 +1,23 @@
+/* футер */
+.footer {
+  height: 230px;
+  background-color: #f6f5f3;
+    .footerBlockTop{
+      border-bottom: 1px solid #e9e9e8; border-top: 1px solid #e9e9e8;
+        .footerBlockTopTitle {
+          margin-top: 20px;
+          line-height: 40px;
+          font-size: 1.2em;
+        }
+        .footerBlockTopContent {
+          margin-bottom: 20px;
+          li {margin: 4px 0;}
+        }
+    }
+    .footerBlockBottom{
+      height: 40px;
+      .footerBlockBottomMobile {float: left; display: inline-block; line-height: 40px; width: 33%;}
+      .footerBlockBottomMetrika {float: left; display: inline-block; line-height: 40px; width: 33%; text-align: center;}
+      .footerBlockBottomCopyright {float: left; display: inline-block; line-height: 40px; width: 33%;text-align: center;}
+    }
+}

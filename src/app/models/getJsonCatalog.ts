@@ -1,0 +1,6 @@
+function productCatalogGetJSON(id: any){
+   
+    
+    
+    
+}

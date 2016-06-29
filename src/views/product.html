@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head lang="ru">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>карточка товара</title>
+        <link href="/css/styles.css" rel="stylesheet">
+        <script type="text/javascript" src="/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.pjax.js"></script>
+        <script type="text/javascript" src="/js/tscript.js"></script>
+
+    </head>
+    <body>
+        <div class="container-fluid karkas">
+            <div class="row header">
+                //= shared/header.html
+            </div>
+
+            <div class="row topMenu">
+               <div class="container">
+                   //= shared/topMenu.html
+               </div>
+            </div>
+
+            <div id="pjax">
+                <div class="row productCard">
+                       //= product/productCard.html
+                </div>
+                <div class="row productCardFooter">
+                    <div class="container">
+                    <ul>
+                        <li class="productCardFooterTab" data-name="">
+                            <a onclick='' href="" class="tabText link linkThemeNone">Описание<span class="tabCount"></span></a>
+                        </li>
+                        <li class="productCardFooterTab" data-name="spec">
+                            <a onclick='' href="" class="tabText link linkThemeMinor">Характеристики<span class="tabCount"></span></a>
+                        </li>
+                        <li class="productCardFooterTab" data-name="offers">
+                            <a onclick='' href="" class="tabText link linkThemeMinor">Цены<span class="tabCount">38</span></a>
+                        </li>
+                        <li class="productCardFooterTab" data-name="geo">
+                            <a onclick='' href="" class="tabText link linkThemeMinor">Карта<span class="tabCount">121</span></a>
+                        </li>
+                        <li class="productCardFooterTab" data-name="reviews">
+                            <a onclick='' href="" class="tabText link linkThemeMinor">Отзывы<span class="tabCount">1</span></a>
+                        </li>
+                        <li class="productCardFooterTab" data-name="forums">
+                            <a onclick='' href="" class="tabText link linkThemeMinor">Обсуждения<span class="tabCount">0</span></a>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+
+                <div class="row shopLink">
+                   //= product/shopLink.html
+                </div>
+
+                <div class="row shopMap">
+                    <div class="container">
+                        //= product/shopMap.html
+                    </div>
+                </div>
+
+                <div class="row productAlternative">
+                    <div class="container">
+                        //= product/productAlternative.html
+                    </div>
+                </div>
+
+                <div class="row productSpec">
+                    <div class="container">
+                        //= product/productSpec.html
+                    </div>
+                </div>
+
+                <div class="row productOpinion">
+                    <div class="container">
+                        //= product/productOpinion.html
+                    </div>
+                </div>
+
+                <div class="row shopInfo">
+                    <div class="container">
+                        //= product/shopInfo.html
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row footer">
+                //= shared/footer.html
+            </div>
+        </div>
+    </body>
+</html>

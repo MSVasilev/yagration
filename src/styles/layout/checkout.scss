@@ -1,0 +1,115 @@
+.checkout {
+  background: #F7F7F7;
+  background: linear-gradient(to bottom,#F7F7F7 0%,#fff 10%,#fff 100%);
+  border-top: solid 1px #EAE9E8;
+  height: 100%;
+}
+
+.checkoutWrapper{
+  min-width: 750px; max-width: 1000px;
+  height: 100%;
+  .checkoutHeader {
+    height: 110px; border-bottom: 1px solid #f0f0f0;
+    h1 {margin: 0; font-size: 2.5em;display: inline-block;line-height: 110px; }
+  }
+  .checkoutContent {
+
+    h2 {font-size: 1.4em; margin: 40px 0;}
+    .checkoutContentItem {
+      height: 80px;
+      border-left: 1px solid #f2f2f2; border-right: 1px solid #f2f2f2;
+      border-bottom: 1px solid #e8e7e5;
+
+      .checkoutContentMainWrapper{
+        width: 40%; float: left;
+
+        .checkoutContentImageWrapper{
+          display: inline-block; line-height: 80px;
+          width: 80px; text-align: center;
+          float: left;
+          img {
+            max-height: 40px;
+          }
+        }
+        .checkoutContentMainTitle{
+          height: 80px; line-height: 80px; font-size: 1.25em; padding-left: 120px;
+        }
+      }
+      .checkoutContentQuantityWrapper{
+        width: 30%; float: left; text-align: center;
+        font-size: 1em;
+        .checkoutContentQuantityBlock{
+          width:85px; margin: 0 auto;
+          height: 80px;
+          .checkoutContentQuantity {float: left;width: 35px;height: 25px; line-height: 80px;}
+          .checkoutItemCountSumm {margin-right: 3px;}
+        }
+      }
+
+      .checkoutContentPriceWrapper{
+        width: 30%; float: left; text-align: center;
+        height: 80px; line-height: 80px;
+        font-size: 1.25em; font-weight: bold;
+        .checkoutContentPrice {float: left;}
+      }
+
+
+    }
+  }
+  .checkoutMain {
+    overflow:hidden;;
+    margin: 35px 0;
+      .checkoutMainPayment {
+        width: 33%; float: right;
+        border: 2px solid #dadada;
+        height: 200px;
+
+
+      }
+
+    .checkoutMainData{
+      border-bottom: 1px solid #f0f0f0;
+      width: 67%; float: left;
+      height: 500px;
+    }
+  }
+  .checkoutBottomPolicy {
+      clear: both;
+      input {margin: 0 3px 0 0;}
+      label {margin-right: 3px; font-weight: normal;}
+      label:hover{cursor: pointer;}
+      #policyLink {position: relative;}
+      #policyLink a {pointer-events: none;}
+
+      #policyLink:hover:before {
+        display: block;
+        content: "Ознакомтесь и подтвердите своё согласие с условиями работы с сервисом";
+        position: absolute;
+        top: 0; left: 50%;
+        transform: translate(-50%, calc(-100% - 10px));
+        border-radius: 3px;
+        padding: 10px;
+        background: #f7f7f7; color: black!important;
+        box-shadow: 0 0 2px;
+      }
+      #policyLink:hover:after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0; left: 50%;
+        transform: translate(-50%, -50%);
+        border-style: solid;
+        border-width: 10px;
+        border-color: #f7f7f7 transparent transparent transparent;
+      }
+      #policyCheckbox:checked ~  #policyLink a {
+        pointer-events: auto;
+      }
+      #policyCheckbox:checked ~  #policyLink:after,  #policyCheckbox:checked ~  #policyLink:before {
+        content: none;
+      }
+
+  }
+
+
+}

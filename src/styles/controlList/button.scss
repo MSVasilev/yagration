@@ -1,0 +1,69 @@
+
+/* стили ссылок,тем в шаблоне (Я)*/
+
+
+.buttonSizeS .button__icon{margin-right:3px;margin-left:-7px}
+.buttonSizeS.button_only-icon_yes .buttonText{padding:0 6px}.buttonSizeS.button_only-icon_yes .button__icon{margin-right:0;margin-left:0}
+.buttonSizeS.button_arrow_down .buttonText:after,.buttonSizeS.button_arrow_up .buttonText:after{right:10px}.buttonSizeS.button_arrow_down .buttonText,.buttonSizeS.button_arrow_up .buttonText{padding-right:25px}
+.buttonSizeS.button_arrow_up .buttonText:after{right:9px}
+.buttonSizeS.button.button_arrow_up .buttonText{padding-right:28px}
+
+.buttonSizeM{font-size:15px;line-height:32px}.buttonSizeM .buttonText{padding:0 15px}
+.buttonSizeM.button__icon{margin-right:6px;margin-left:-7px}
+.buttonSizeM.button_only-icon_yes .buttonText{padding:0 8px}
+.buttonSizeM.button_only-icon_yes .button__icon{margin-right:0;margin-left:0}
+.buttonSizeM.button_arrow_down .buttonText:after,.buttonSizeM.button_arrow_up .buttonText:after{right:12px}
+.buttonSizeM.button_arrow_down .buttonText,.buttonSizeM.button_arrow_up .buttonText{padding-right:29px}
+.buttonSizeM.button_arrow_up .buttonText:after{right:10px}
+.buttonSizeM.button.button_arrow_up .buttonText{padding-right:31px}
+
+.button_theme_normal{z-index:0;color:#000;background:0 0}
+.button_theme_normal:before{position:absolute;z-index:-1;top:0;right:0;bottom:0;left:0;content:'';border:1px solid;border-color:rgba(0,0,0,.2);border-radius:3px;background-color:#fff;background-clip:padding-box}html.utilityfocus
+.button_theme_normal.button_focused_yes:before{border-width:2px;border-color:#ffdb4d}.button_theme_normal.button_pressed_yes:before{background-color:#f3f1ed}
+.button_theme_normal.button_disabled_yes:before{border-color:rgba(0,0,0,.08);background-color:rgba(0,0,0,.08)}
+.button_theme_normal.button_disabled_yes .buttonText{opacity:.5}
+.button_theme_normal:before{transition:.1s ease-out;transition-property:border-color,border-width,background-color}.button_theme_normal.button_hovered_yes:before{border-color:rgba(0,0,0,.3)}
+
+.buttonThemeAction{z-index:0;color:#000;background:0 0}
+.buttonThemeAction:before{position:absolute;z-index:-1;top:0;right:0;bottom:0;left:0;content:'';border-radius:3px;background-color:#ffdb4d}
+.buttonThemeAction.button_pressed_yes:before{background-color:#fc0}
+.buttonThemeAction.button_disabled_yes:before{background-color:rgba(0,0,0,.08)}
+.buttonThemeAction.button_disabled_yes .buttonText{opacity:.5}
+.buttonThemeAction:before{transition:background-color .1s ease-out 0s}
+.buttonThemeAction.button_hovered_yes:before{background-color:#ffd633}
+.buttonThemeAction.button_focused_yes:before{animation:button-action-focus 1s infinite linear}
+.buttonThemeAction{position:relative;z-index:2;min-width:70px;max-width:260px;margin-top:10px}
+.buttonThemeAction .buttonText .buttonPrice{font-size:inherit;display:inline}
+.buttonThemeAction .buttonText .buttonPrice:before{display:inline-block;width:1px;height:16px;margin:0 9px -3px;content:'';background:0 0 rgba(0,0,0,.17)}
+
+.buttonThemePseudo{z-index:0;color:#000;background:0 0}
+.buttonThemePseudo:before{position:absolute;z-index:-1;top:0;right:0;bottom:0;left:0;content:'';border:1px solid;border-color:rgba(0,0,0,.2);border-radius:3px;background-color:transparent;background-clip:padding-box}html.utilityfocus
+.buttonThemePseudo.button_focused_yes:before{border-width:2px;border-color:#ffdb4d}
+.buttonThemePseudo.button_pressed_yes:before{background-color:rgba(0,0,0,.05)}
+.buttonThemePseudo.button_disabled_yes:before{border-color:rgba(0,0,0,.08);background-color:rgba(0,0,0,.08)}
+.buttonThemePseudo.button_disabled_yes .buttonText{opacity:.5}
+.buttonThemePseudo:before{transition:.1s ease-out;transition-property:border-color,border-width,background-color}
+.buttonThemePseudo.button_hovered_yes:before{border-color:rgba(0,0,0,.3)}
+
+.button_theme_blue,a.button_theme_blue{font-family:Arial,sans-serif;color:#202020}
+.button_theme_blue.button_hovered_yes{color:#202020!important}
+.button_theme_blue:before{position:absolute;top:1px;right:1px;bottom:1px;left:1px;padding:0;content:"";border-radius:2px;background:#f0f4fb;-moz-box-shadow:0 0 0 1px #c9d0dd;box-shadow:0 0 0 1px #c9d0dd}.button_theme_blue.button_hovered_yes:not(.button_focused_yes):before{box-shadow:0 0 0 1px #a3afc6}.buttonSizeS{font-size:13px;line-height:28px}.buttonSizeS .buttonText{padding:0 13px}
+
+
+
+.buttonPrice{display:inline}
+.buttonPriceCurrency{display:inline}
+.buttonPricePref{display:inline}
+.buttonText{position:relative;display:inline-block;resize:none;pointer-events:none}
+
+.button{position:relative;display:inline-block;box-sizing:border-box;margin:0;padding:0;-moz-user-focus:ignore;user-select:none;white-space:nowrap;	text-decoration:none;font-family:Arial,sans-serif;border:0;outline:0;background:0 0;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+.button_disabled_yes{pointer-events:none}
+.button::-moz-focus-inner{padding:0;border:0}
+.button{cursor:pointer}
+.button_disabled_yes{cursor:default}
+.button{overflow:visible;text-align:center}
+.button .button__notice{background-clip:padding-box!important}
+.after-critical{transition:opacity .5s;opacity:0}
+
+.buttonMore {padding: 20px 0 20px 0;display:block;a{width:100%;padding:15px auto;}}
+
