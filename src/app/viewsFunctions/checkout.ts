@@ -46,8 +46,18 @@ function checkout(){
                 '<input id="policyCheckbox" type="checkbox" checked="checked"/><label for="policyCheckbox">Я принимаю</label><span id="policyLink"><a class="link linkThemeMinor" target="_blank" href="">условия использования сервиса</a></span> '+
             '</div>'
 
-        );
 
+
+
+
+
+
+
+
+
+
+            
+        );
 
     }
     return false;
