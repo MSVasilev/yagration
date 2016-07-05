@@ -4,14 +4,17 @@
   border-top: solid 1px #EAE9E8;
   height: 100%;
 }
-
 .checkoutWrapper{
   min-width: 750px; max-width: 1000px;
   height: 100%;
+
+  //заголовок вьюхи
   .checkoutHeader {
     height: 110px; border-bottom: 1px solid #f0f0f0;
     h1 {margin: 0; font-size: 2.5em;display: inline-block;line-height: 110px; }
   }
+
+  //реестр товаров к оформлению
   .checkoutContent {
 
     h2 {font-size: 1.4em; margin: 40px 0;}
@@ -56,22 +59,208 @@
 
     }
   }
+
+  //обертка для остального содержимого
   .checkoutMain {
     overflow:hidden;;
     margin: 35px 0;
+
+      // блок выбора оплаты справа
       .checkoutMainPayment {
+        padding: 0 20px;
         width: 33%; float: right;
         border: 2px solid #dadada;
-        height: 200px;
+        min-height: 200px;
+        p {
+          text-align: left;
+          margin-top: 20px;
+          display: block; width: 100%;
+          margin-bottom: 15px;
+          color: #999;
+        }
+        .checkoutRadioPaymentItem{
+          position: relative;
+          margin-bottom: 5px;
+          input {
+            display: none;
+          }
+          label {
+            display: inline-block; line-height: 25px;
+            cursor: pointer;
+            padding-left: 39px;
+            font-weight: normal;
+          }
+          label:before {
+            content: "";
+
+            width: 17px;
+            height: 17px;
+            position: absolute; left: 11px; top: 3px;
+            border: 1px solid #e2e2e2;
+            border-radius: 8px;
+
+          }
+          input:checked + label:before {
+            border: 1px solid #dec356;
+            background-color: #fdedad;
+            content: "\2022";
+            color: black;
+            font-size: 24px;
+            text-align: center;
+            line-height: 15px;
+          }
+
+        }
+        .checkoutOrder{
+          padding: 20px; width: 100%;
+          div {width: 150px; margin: 0 auto; }
+
+        }
+
 
 
       }
 
-    .checkoutMainData{
-      border-bottom: 1px solid #f0f0f0;
-      width: 67%; float: left;
-      height: 500px;
-    }
+      // блок информации о доставке слева (обертка)
+      .checkoutMainData{
+        border-bottom: 1px solid #f0f0f0;
+        margin-right: 7%;
+        width: 60%; float: left;
+        min-height: 500px;
+
+          // блок выбора варианта поставки
+          .checkoutRadioDeliveryWrapper{
+
+            .checkoutRadioItemDelivery{
+              cursor: pointer; display: block;
+              position: relative; height: 39px;
+              box-shadow: 1px 0 0 0 #e2e2e2, 0 1px 0 0 #e2e2e2, 1px 0 0 0 #e2e2e2 inset, 0 1px 0 0 #e2e2e2 inset;
+              input {
+                display: none;
+              }
+              label {
+                display: inline-block; line-height: 39px;
+                cursor: pointer;
+                padding-left: 39px;
+                font-weight: normal;
+              }
+              label:before {
+                content: "";
+
+                width: 17px;
+                height: 17px;
+                position: absolute; left: 11px; top: 11px;
+                border: 1px solid #e2e2e2;
+                border-radius: 8px;
+
+              }
+              input:checked + label:before {
+                border: 1px solid #dec356;
+                content: "\2022";
+                color: black;
+                font-size: 24px;
+                text-align: center;
+                line-height: 15px;
+              }
+              .checkoutDeliveryPrice {width: 25%; float: right; text-align: center;display: inline-block; line-height: 39px;}
+              .checkoutDeliveryDate{width: 20%; float: right;margin-right: 0; text-align: center;display: inline-block; line-height: 39px;}
+
+
+            }
+            .checkoutRadioItemDelivery:hover{
+              label:before {
+                border: 1px solid #c2c2c2;
+              }
+            }
+          }
+
+          // юлок содержания выбранного варианта поставки
+          .checkoutDeliveryWrapper {
+            margin-top: 30px; width: 100%;
+            .checkoutRadioShopTitle{
+              display: block; width: 100%;
+              margin-bottom: 15px;
+              color: #999;
+            }
+            .checkoutRadioItemShop{
+              position: relative;
+              margin-bottom: 5px;
+              input {
+                display: none;
+              }
+              label {
+                display: inline-block; line-height: 25px;
+                cursor: pointer;
+                padding-left: 39px;
+                font-weight: normal;
+              }
+              label:before {
+                content: "";
+
+                width: 17px;
+                height: 17px;
+                position: absolute; left: 11px; top: 3px;
+                border: 1px solid #e2e2e2;
+                border-radius: 8px;
+
+              }
+              input:checked + label:before {
+                border: 1px solid #dec356;
+                background-color: #fdedad;
+                content: "\2022";
+                color: black;
+                font-size: 24px;
+                text-align: center;
+                line-height: 15px;
+              }
+              .checkoutRadioShopName{
+                font-weight: bold; margin-right: 10px;
+
+              }
+              .checkoutRadioShopHours {
+                color: #999; margin-left: 10px;
+              }
+
+
+            }
+
+            .checkoutRadioContactsTitle {
+              margin-top: 20px;
+              display: block; width: 100%;
+              margin-bottom: 15px;
+              color: #999;
+            }
+            .checkoutRadioContactsForm{width: 30%; display: inline-block; line-height: 25px;}
+            .checkoutRadioContactsForm:nth-child(2){margin: 0 5%;}
+          //  .checkoutRadioContactsForm:not(:focus):hover{
+          //    box-shadow: 1px 0 0 0 #b2b2b2, 0 1px 0 0 #b2b2b2, 1px 0 0 0 #b2b2b2 inset, 0 1px 0 0 #b2b2b2 inset;}
+            .checkoutRadioContactsForm:focus{border: 2px solid #dec356;}
+
+            .checkoutAddressFormInput:focus {border: 2px solid #dec356;}
+            .checkoutAddressFormInput:nth-child(1){
+              width: 100%;display: inline-block; line-height: 25px; margin-bottom: 15px;
+            }
+            .checkoutAddressFormInput:nth-child(2){
+              width: 40%;display: inline-block; line-height: 25px; margin-bottom: 15px;
+            }
+            .checkoutAddressFormInput:nth-child(4){
+              width: 100%; height: 100px; display: none; resize: vertical;
+            }
+            a {float: right;display: inline-block; line-height: 25px;}
+          }
+
+          #checkoutDeliveryRussia{
+            div {font-weight: bold; margin: 20px 0;}
+            span{display: inline-block; line-height: 25px;}
+
+          }
+
+
+
+      }
+
+
+
   }
   .checkoutBottomPolicy {
       clear: both;
@@ -79,14 +268,13 @@
       label {margin-right: 3px; font-weight: normal;}
       label:hover{cursor: pointer;}
       #policyLink {position: relative;}
-      #policyLink a {pointer-events: none;}
 
       #policyLink:hover:before {
         display: block;
         content: "Ознакомтесь и подтвердите своё согласие с условиями работы с сервисом";
         position: absolute;
-        top: 0; left: 50%;
-        transform: translate(-50%, calc(-100% - 10px));
+        top: 0; left: 0;
+        transform: translate(-0, calc(-100% - 10px));
         border-radius: 3px;
         padding: 10px;
         background: #f7f7f7; color: black!important;
@@ -98,16 +286,11 @@
         position: absolute;
         top: 0; left: 50%;
         transform: translate(-50%, -50%);
-        border-style: solid;
+        border: solid;
         border-width: 10px;
         border-color: #f7f7f7 transparent transparent transparent;
       }
-      #policyCheckbox:checked ~  #policyLink a {
-        pointer-events: auto;
-      }
-      #policyCheckbox:checked ~  #policyLink:after,  #policyCheckbox:checked ~  #policyLink:before {
-        content: none;
-      }
+
 
   }
 
