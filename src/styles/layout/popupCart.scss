@@ -1,0 +1,108 @@
+
+#popupCartWrapper{                                //popup окно корзины
+  #popupCart {
+    position: absolute;
+    width: 750px;height: 400px;
+    background-color: #ffffff;
+  }
+  .popupCartWindow {
+    position: absolute;left: 0;top: 0;
+    display: none;
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  .popupCartTop {                                   // верхняя часть окна popup(белый фон)
+    position: absolute;left: 0;top: 0;
+    width: 750px;height: 250px;
+    background: #ffffff;
+    padding: 10px;
+
+    .popupCartImageWrapper {
+      position: absolute; left: 0px; top: 0px;
+      display: inline-block; line-height: 250px;
+      width: 250px; text-align: center;
+      img {
+
+        max-height: 120px;
+      }
+    }
+    .popupCartContentTopWrapper {
+      padding: 10px 0;
+      position: absolute; left: 250px; top: 0px;
+      width: 450px; height: 165px;
+      border-bottom: 1px solid #f0f0f0;
+      h2{
+        padding-top: 10px;
+        font-size: 1.75em;
+      }
+      .popupCartContentTopTitle{
+        position: absolute; left: 0; top: 90px;
+        width: 350px;
+        font-size: 1.25em;
+      }
+      .popupCartContentTopPrice{
+        position: absolute; left: 350px; top: 90px;
+        width: 100px;
+        text-align: right;
+        display: inline-block;
+        font-size: 1.25em; font-weight: bold;
+      }
+
+
+      .popupCartContentTopShop{
+        position: absolute; left: 0px; top: 120px;
+        width: 400px;
+        a{
+          padding-right: 3px;
+          float: left;
+        }
+      }
+
+
+
+    }
+    .popupCartContentBottomWrapper {
+      position: absolute; left: 250px; top: 165px;
+      width: 450px; height: 85px;
+      display: inline-block; line-height: 85px;
+      .popupCartButton{
+        float: left;
+        height: 20px;
+      }
+      .popupCartLink{
+        float: right;
+        font-size: 1.25em;
+      }
+    }
+    .closeWrapper {
+      position: absolute; right: 20px; top: 10px;
+    }
+  }
+
+  .popupCartBottom {                                        // нижняя часть окна popup(белый фон)
+    position: absolute; left: 0; top: 250px;
+    width: 750px;
+    background: #e4eefe;
+    ul {
+      padding: 0 20px;
+      height: 75px;
+    }
+    ul li {
+      background: url("/images/popuplist.png")no-repeat left top;
+      padding: 0 10px 0 20px;
+      width: 235px; display: inline-block;
+    }
+    .popupCartBottomTitle {
+      padding: 0 20px;
+      width: 750px; font-size: 1.5em;
+      height: 75px; display: inline-block; line-height: 75px;
+    }
+  }
+}
+.overlay{
+  position: absolute; left: 0; top: 0;
+  z-index: 9000;
+  background-color: black; opacity: 0.5;
+  display: none;
+}

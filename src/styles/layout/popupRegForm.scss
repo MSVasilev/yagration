@@ -1,0 +1,59 @@
+
+#popupRegFormWrapper{                                //popup окно регистрации
+  #popupRegForm {
+    position: absolute;
+    width: 500px; height: 750px;
+    background-color: #ffffff;
+  }
+  .popupRegFormWindow {
+    position: absolute;left: 0;top: 0;
+    display: none;
+    z-index: 9999;
+    overflow: hidden;
+  }
+
+  .popupRegFormTop {                                   // верхняя часть окна popup(менюшка)
+    position: absolute;left: 0;top: 0;
+    width: 500px;height: 75px;
+
+    padding: 10px;
+    background: #e4eefe;
+    ul li {display: inline-block; line-height: 75px; padding: 0 20px;}
+    .popupRegFormCloseWrapper {position: absolute; right: 20px; top: 10px;}
+  }
+
+  .popupRegFormMiddle {                                   // средняя часть окна popup(сама рег форма)
+    position: absolute;left: 0;top: 75px;
+    border: 1px solid black;
+    width: 500px;height: 600px;
+    background: #ffffff;
+    form input, select {width: 320px; height: 40px;}
+    .popupRegFormInputName {position: absolute;left: 10px;top: 20px;}
+    .popupRegFormInputGender {position: absolute;left: 10px;top: 80px;}
+    .popupRegFormInputBirthdate {position: absolute;left: 10px;top: 140px;}
+    .popupRegFormInputEmail {position: absolute;left: 10px;top: 200px;}
+    .popupRegFormInputPhone {position: absolute;left: 10px;top: 260px;}
+    .popupRegFormInputPass {position: absolute;left: 10px;top: 320px; }
+    a{position: absolute;left: 350px;top: 340px;}
+    .popupRegFormMiddleInfo {position: absolute;left: 10px;top: 400px;}
+    .smsInfoLine{position: absolute;left: 10px;top: 500px;}
+  }
+
+
+  .popupRegFormBottom {                                        // нижняя часть окна popup(сабмит)
+    position: absolute; left: 0; top: 675px;
+    width: 500px; height: 75px;
+    background: #e4eefe;
+
+
+  }
+}
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background-color: black;
+  opacity: 0.5;
+  display: none;
+}

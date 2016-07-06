@@ -2,6 +2,8 @@
 function cart() {
     $(document).on('click', '.toCart', addToCart);
     $(document).on('click', '.headerMenuItemFavorite', emptyCart); //временно: кнопка сброса корзины
+    $(document).on('click', '.popupRegistration', regForm); //временно повешена сюда: рег форма
+    
 }
 
 function cartInit() {
