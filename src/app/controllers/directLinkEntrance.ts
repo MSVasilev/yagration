@@ -13,6 +13,11 @@ $(document).ready(function(){
             productCardShowYandexMap();
         });
     }
+    else if ((window.location.pathname).indexOf('poisk') !== -1){
+        $(document).ready(function ($:any) {
+            new priceListLightViewUser();
+        });
+    }
     else if ((window.location.pathname).indexOf('catalog') !== -1){
 
     }

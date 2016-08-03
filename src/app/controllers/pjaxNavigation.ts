@@ -39,9 +39,23 @@ function pjaxNavigation() {
             checkout();
         });
         return false;
-    })
+    });
+
+    $(document).on('click','.pjaxAV', function(){                                  //ajax переход на av
+        $(document).off('.productCardFooterMenuNamepace');
+        //noinspection TypeScriptValidateTypes
+        $.pjax({url: $(this).attr('href'), container: '#pjax', fragment: '#pjax'});
+        $(document).one('pjax:end.caseProduct', '#pjax', function() {
+            new priceListLightViewUser();
+        });
+        return false;
+    });
+
+
+
     
-
-
+    
+    
+    
 
 }

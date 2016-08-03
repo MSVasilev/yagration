@@ -1,0 +1,68 @@
+$size: 64px;
+
+.fa-phone {
+  font-size: 64px;
+
+}
+
+.iis-form-controls-backCall {
+  position: fixed;
+  bottom: 7%;
+  z-index: 999;
+  right: 80px;
+  width: $size;
+  height: $size;
+  background-color: #ffffff;
+  border-radius: $size/2;
+
+
+  .one{
+    position: absolute;
+    animation: iconAnim 4s both ease-in-out infinite;
+    width: 100%;
+    height: 100%;
+    border-radius: $size/2;
+  }
+
+  .two{
+
+    animation: iconAnim 2s both ease-in-out infinite;
+    width: 100%;
+    height: 100%;
+    border-radius: $size/2;
+  }
+  .fa-phone {
+
+//    animation: phoneMove 3000ms infinite;
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    margin: 0;
+    padding: 0;
+    color: #4cae4c;
+  }
+}
+
+@keyframes iconAnim {
+  0% {
+    box-shadow: 0px 0px 0px 0 rgba(9, 153, 57, 0)
+  }
+  30% {
+    box-shadow: 0px 0px 0px 18px rgba(9, 153, 57, 0.1)
+  }
+  100% {
+    box-shadow: 0px 0px 0px 0 rgba(9, 153, 57, 0)
+  }
+}
+
+@keyframes phoneMove {
+  from {
+    color: #4cae4c;
+  }
+  to {
+    color: #1b6d85;
+  }
+  50% {
+    transform: rotate(60deg);
+  }
+}

@@ -1,0 +1,84 @@
+$headerColor: gray;
+$currentRowColor: #dddddd;
+$rowBorderColor: #dddddd;
+$rowGroupColor: antiquewhite;
+.iis-form-controls-tableBox {
+  font-size: 1em;
+  cursor: context-menu;
+}
+
+.iis-form-controls-tableBox-header {
+  background-color: gray;
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 34px; line-height: 34px; font-size: 1.25em;;
+
+  div {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: col-resize;
+    height: 100%;
+    position: relative;
+    right: 1px;
+    div {
+      background-color: gray;
+      cursor: context-menu;
+      width: 100%;
+
+      text-align: center;
+    }
+  }
+}
+
+.iis-form-controls-tableBox-rowList {
+  table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-color: transparent;
+  overflow-x: auto;
+  overflow-y: auto;
+
+  table {
+    border-spacing: 0;
+    width: 100%;
+  }
+
+}
+
+.iis-form-controls-tableBox-rowListGroup {
+  overflow: hidden;
+}
+
+.iis-form-controls-tableBox-currentRow {
+  background-color: $currentRowColor;
+
+}
+
+.iis-form-controls-tableBox-rowGroup {
+  background-color: $rowGroupColor;
+}
+
+.iis-form-controls-tableBox-row {
+  td {
+    border-right: 1px dotted;
+    border-top: 1px dotted;
+    border-color: $rowBorderColor;
+    padding: 0px 0px 0px 4px;
+    div {
+      position: relative;
+      height: 20px;
+      div {
+        white-space: nowrap;
+        position: absolute;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

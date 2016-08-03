@@ -196,6 +196,9 @@ gulp.task('webserver', function () {
     app.get('/catalog/*', function(req, res){
         res.sendFile(__dirname + '/www/catalog.html');
     });
+    app.get('/poisk/*', function(req, res){
+        res.sendFile(__dirname + '/www/av.html');
+    });
     app.get('/product/*', function(req, res){
         res.sendFile(__dirname + '/www/product.html');
     });
