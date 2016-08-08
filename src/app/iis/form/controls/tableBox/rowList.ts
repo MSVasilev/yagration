@@ -25,15 +25,46 @@ class RowListStatic {
         if (classList.contains("fa-minus-square-o")) {
             classList.remove("fa-minus-square-o");
             classList.add("fa-plus-square-o");
+            //(<HTMLElement>td.firstChild).style.display = "initial";
             (<HTMLElement>td.childNodes[1]).style.display = "none";
         } else {
             classList.remove("fa-plus-square-o");
             classList.add("fa-minus-square-o");
+            //(<HTMLElement>td.firstChild).style.display = "none";
+            (<HTMLElement>td.childNodes[1]).style.display = "initial";
+        }
+    }
+
+    static expandGroupItems(td:HTMLElement){
+        var classList:DOMTokenList = (<HTMLElement>td.firstChild).classList;
+        if (classList.contains("fa-minus-square-o")) {
+            classList.remove("fa-minus-square-o");
+            classList.add("fa-plus-square-o");
+            (<HTMLElement>td.firstChild).style.display = "initial";
+            (<HTMLElement>td.childNodes[1]).style.display = "none";
+        } else {
+            classList.remove("fa-plus-square-o");
+            classList.add("fa-minus-square-o");
+            (<HTMLElement>td.firstChild).style.display = "none";
+            (<HTMLElement>td.childNodes[1]).style.display = "initial";
+        }
+    }
+
+    /*static closeGroup(td:HTMLElement){
+        var classList:DOMTokenList = (<HTMLElement>td.firstChild).classList;
+        if (classList.contains("fa-plus-square-o")) {
+            classList.remove("fa-plus-square-o");
+            classList.add("fa-minus-square-o");
+            (<HTMLElement>td.childNodes[1]).style.display = "none";
+        } else {
+            classList.remove("fa-minus-square-o");
+            classList.add("fa-plus-square-o");
             (<HTMLElement>td.childNodes[1]).style.display = "initial";
         }
 
-    }
-
+    }*/
+    
+    
     static setCurrentRow(rowList:RowList, el:HTMLElement){
         if (rowList.currentRow.htmlElement == el)return;
 
@@ -89,28 +120,39 @@ class RowListStatic {
     }
 
     static addGroup(tableBox:TableBox, tmpl:RowListHtmlTmpl, rootDiv:HTMLElement, expand:boolean, description:string = undefined):RowList {
-
         var trGroup:HTMLElement = document.createElement("tr");
         trGroup.classList.add("iis-form-controls-tableBox-rowGroup");
-
         if (expand) {
             var span:string = '<span class="fa fa-lg fa-minus-square-o">' + description + '</span>';
         } else {
             var span:string = '<span class="fa fa-lg fa-plus-square-o">' + description + '</span>';
-        }
-
+       }
         (<HTMLElement>trGroup).innerHTML = '<td colspan="' + tableBox.fieldList.count().toString() + '">' + span + '<div class="iis-form-controls-tableBox-rowListGroup"><table/></div></td>';
-
         RowListStatic.expandGroup(<HTMLElement>trGroup.firstChild);
         var rowListGroup:RowList = new RowList(tableBox, tmpl, <HTMLElement>trGroup.firstChild.childNodes[1]);
-
         //caption.addEventListener("mousedown", currentRowEvent.Run);
-
-
         rootDiv.firstChild.appendChild(trGroup);
-
         return rowListGroup;
     }
+
+    static addGroupItems(tableBox:TableBox, tmpl:RowListHtmlTmpl, rootDiv:HTMLElement, expandItems:boolean, description:string = undefined):RowList {
+        var trGroup:HTMLElement = document.createElement("tr");
+        trGroup.classList.add("iis-form-controls-tableBox-rowGroupItems");
+        if (expandItems) {
+            var span:string = '<span class="fa fa-lg fa-minus-square-o">' + description + '</span>';
+        } else {
+            var span:string = '<span class="fa fa-lg fa-plus-square-o">' + description + '</span>';
+        }
+        (<HTMLElement>trGroup).innerHTML = '<td colspan="' + tableBox.fieldList.count().toString() + '">' + span + '<div class="iis-form-controls-tableBox-rowListGroup"><table/></div></td>';
+        RowListStatic.expandGroupItems(<HTMLElement>trGroup.firstChild);
+        var rowListGroup:RowList = new RowList(tableBox, tmpl, <HTMLElement>trGroup.firstChild.childNodes[1]);
+        //caption.addEventListener("mousedown", currentRowEvent.Run);
+        rootDiv.firstChild.appendChild(trGroup);
+        return rowListGroup;
+    }
+    
+    
+    
 }
 
 
@@ -191,11 +233,20 @@ class RowList extends Control {
 
         if (el.classList.contains("iis-form-controls-tableBox-row")) {
             RowListStatic.setCurrentRow(this, el);
-        } else {
-            RowListStatic.expandGroup(<HTMLElement>el.firstChild);
+        }
+        else if (el.classList.contains("iis-form-controls-tableBox-rowGroupItems")){
+            RowListStatic.expandGroupItems(<HTMLElement>el.firstChild);
+
             //Вложенная таблица
         }
+        else {
+            RowListStatic.expandGroup(<HTMLElement>el.firstChild);
+
+            //Вложенная таблица
+        }
+
     }
+
 
     public add(data:Array<any>):Row {
        return RowListStatic.add(data, this.tableBox.getId(), this.tableBox.fieldList, this.tmpl, this.htmlElement);
@@ -211,6 +262,10 @@ class RowList extends Control {
 
     public addGroup(description:string = null, expand:boolean = true):RowList {
         return RowListStatic.addGroup(this.tableBox, this.tmpl, this.htmlElement, expand, description);
+    }
+
+    public addGroupItems(description:string = null, expandItems:boolean = true):RowList {
+        return RowListStatic.addGroupItems(this.tableBox, this.tmpl, this.htmlElement, expandItems, description);
     }
 
     public clear():void {
