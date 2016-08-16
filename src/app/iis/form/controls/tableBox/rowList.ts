@@ -22,31 +22,57 @@ class RowListStatic {
 
     static expandGroup(td:HTMLElement){
         var classList:DOMTokenList = (<HTMLElement>td.firstChild).classList;
+        var classExpandable:DOMTokenList = (<HTMLElement>td).classList;
+        var asd:any = getRowListState() || {};
         if (classList.contains("fa-minus-square-o")) {
             classList.remove("fa-minus-square-o");
             classList.add("fa-plus-square-o");
             //(<HTMLElement>td.firstChild).style.display = "initial";
             (<HTMLElement>td.childNodes[1]).style.display = "none";
+
+            asd[classExpandable[0]] = 0;
+            setRowListState(asd);
+            console.log(localStorage);
+
         } else {
             classList.remove("fa-plus-square-o");
             classList.add("fa-minus-square-o");
             //(<HTMLElement>td.firstChild).style.display = "none";
             (<HTMLElement>td.childNodes[1]).style.display = "initial";
+
+            asd[classExpandable[0]] = 1;
+            setRowListState(asd);
+            console.log(localStorage);
+
         }
     }
 
     static expandGroupItems(td:HTMLElement){
         var classList:DOMTokenList = (<HTMLElement>td.firstChild).classList;
+        var classExpandable:DOMTokenList = (<HTMLElement>td).classList;
+        var asd:any = getRowListState() || {};
         if (classList.contains("fa-minus-square-o")) {
             classList.remove("fa-minus-square-o");
             classList.add("fa-plus-square-o");
-            (<HTMLElement>td.firstChild).style.display = "initial";
+            //(<HTMLElement>td.firstChild).style.display = "initial";
             (<HTMLElement>td.childNodes[1]).style.display = "none";
+
+            asd[classExpandable[0]] = 0;
+            setRowListState(asd);
+            console.log(localStorage);
+
         } else {
             classList.remove("fa-plus-square-o");
             classList.add("fa-minus-square-o");
-            (<HTMLElement>td.firstChild).style.display = "none";
+            //(<HTMLElement>td.firstChild).style.display = "none";
             (<HTMLElement>td.childNodes[1]).style.display = "initial";
+
+            asd[classExpandable[0]] = 1;
+            setRowListState(asd);
+            console.log(localStorage);
+
+
+
         }
     }
 
@@ -119,7 +145,7 @@ class RowListStatic {
         return row;
     }
 
-    static addGroup(tableBox:TableBox, tmpl:RowListHtmlTmpl, rootDiv:HTMLElement, expand:boolean, description:string = undefined):RowList {
+    static addGroup(tableBox:TableBox, tmpl:RowListHtmlTmpl, rootDiv:HTMLElement, expand:boolean, description:string = undefined, id:string = undefined):RowList {
         var trGroup:HTMLElement = document.createElement("tr");
         trGroup.classList.add("iis-form-controls-tableBox-rowGroup");
         if (expand) {
@@ -127,7 +153,7 @@ class RowListStatic {
         } else {
             var span:string = '<span class="fa fa-lg fa-plus-square-o">' + description + '</span>';
        }
-        (<HTMLElement>trGroup).innerHTML = '<td colspan="' + tableBox.fieldList.count().toString() + '">' + span + '<div class="iis-form-controls-tableBox-rowListGroup"><table/></div></td>';
+        (<HTMLElement>trGroup).innerHTML = '<td colspan="' + tableBox.fieldList.count().toString() + '" class="' + id +'">' + span + '<div class="iis-form-controls-tableBox-rowListGroup"><table/></div></td>';
         RowListStatic.expandGroup(<HTMLElement>trGroup.firstChild);
         var rowListGroup:RowList = new RowList(tableBox, tmpl, <HTMLElement>trGroup.firstChild.childNodes[1]);
         //caption.addEventListener("mousedown", currentRowEvent.Run);
@@ -135,15 +161,16 @@ class RowListStatic {
         return rowListGroup;
     }
 
-    static addGroupItems(tableBox:TableBox, tmpl:RowListHtmlTmpl, rootDiv:HTMLElement, expandItems:boolean, description:string = undefined):RowList {
+    static addGroupItems(tableBox:TableBox, tmpl:RowListHtmlTmpl, rootDiv:HTMLElement, expandItems:boolean, description:string = undefined, id:string = undefined):RowList {
         var trGroup:HTMLElement = document.createElement("tr");
         trGroup.classList.add("iis-form-controls-tableBox-rowGroupItems");
+        //trGroup.classList.add(id);
         if (expandItems) {
             var span:string = '<span class="fa fa-lg fa-minus-square-o">' + description + '</span>';
         } else {
             var span:string = '<span class="fa fa-lg fa-plus-square-o">' + description + '</span>';
         }
-        (<HTMLElement>trGroup).innerHTML = '<td colspan="' + tableBox.fieldList.count().toString() + '">' + span + '<div class="iis-form-controls-tableBox-rowListGroup"><table/></div></td>';
+        (<HTMLElement>trGroup).innerHTML = '<td colspan="' + tableBox.fieldList.count().toString() + '" class="' + id +'">' + span + '<div class="iis-form-controls-tableBox-rowListGroup"><table/></div></td>';
         RowListStatic.expandGroupItems(<HTMLElement>trGroup.firstChild);
         var rowListGroup:RowList = new RowList(tableBox, tmpl, <HTMLElement>trGroup.firstChild.childNodes[1]);
         //caption.addEventListener("mousedown", currentRowEvent.Run);
@@ -260,12 +287,12 @@ class RowList extends Control {
         return RowListStatic.insertByObject(index, data, this.tableBox.fieldList, this.htmlElement);
     }
 
-    public addGroup(description:string = null, expand:boolean = true):RowList {
-        return RowListStatic.addGroup(this.tableBox, this.tmpl, this.htmlElement, expand, description);
+    public addGroup(description:string = null, expand:boolean = true, id:string = null):RowList {
+        return RowListStatic.addGroup(this.tableBox, this.tmpl, this.htmlElement, expand, description, id);
     }
 
-    public addGroupItems(description:string = null, expandItems:boolean = true):RowList {
-        return RowListStatic.addGroupItems(this.tableBox, this.tmpl, this.htmlElement, expandItems, description);
+    public addGroupItems(description:string = null, expandItems:boolean = true, id:string = null):RowList {
+        return RowListStatic.addGroupItems(this.tableBox, this.tmpl, this.htmlElement, expandItems, description, id);
     }
 
     public clear():void {

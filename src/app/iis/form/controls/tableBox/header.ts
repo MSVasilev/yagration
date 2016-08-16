@@ -11,7 +11,7 @@ class EventChangeSize {
 
     constructor(tableBox:TableBox, field:Field, currentX:number) {
         this.tableBox = tableBox;
-        this.currentX = currentX
+        this.currentX = currentX;
         this.field = field;
 
         this.setMouseMove = this.setMouseMove.bind(this);
@@ -161,7 +161,7 @@ class Header extends Control {
         var el:HTMLElement = <HTMLElement>event.target;
         if (el.classList.length == 0) return;
 
-        var sortDirection:SortDirection = SortDirection.ASC
+        var sortDirection:SortDirection = SortDirection.ASC;
         if (el.classList.contains("fa")) {
             if (el === this.currentDivField) {
                 var sortDirection:SortDirection = SortDirectionIcon.getSortDirection(this.currentDivField);

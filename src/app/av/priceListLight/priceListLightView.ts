@@ -3,17 +3,17 @@
 
 class Report {
     static update(pll:PriceListLight, tableBox:TableBox, findType:string, findValue:string){
-        tableBox.rowList.clear();
+    tableBox.rowList.clear();
 
-        //var sort:SortArray = new SortArray(<any>pll.priceProductListLight.p);
-        //sort.sort("o", SortDirection.DESC);
+    //var sort:SortArray = new SortArray(<any>pll.priceProductListLight.p);
+    //sort.sort("o", SortDirection.DESC);
 
-        if(findType == "d"){
-            Report.ByDescription(tableBox, pll);
-        }else{
-            Report.ByNumber(tableBox, pll, findValue);
-        }
+    if(findType == "d"){
+        Report.ByDescription(tableBox, pll);
+    }else{
+        Report.ByNumber(tableBox, pll, findValue);
     }
+}
 
     static ByDescription(tableBox:TableBox, pll:PriceListLight) {
         var i:number = 0;
@@ -23,145 +23,194 @@ class Report {
         });
     }
 
-
     static ByNumber(tableBox:TableBox, pll:PriceListLight, findValue:string) {
 
         var PLRows:Array<Product> = Arrays.filterByField<Product>(pll.productListLight.p, "ns", findValue);
-
         PLRows.forEach(product => {
             var PPRows:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(pll.priceProductListLight.p, "pi", product.i);
 
-            var PPRowsFirstLine = PPRows.slice(0, 1);
-            var PPRowsMidLine = PPRows.slice(1, 3);
-            var PPRowsEnd = PPRows.slice(3);
+            var PPRowsOwn:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(PPRows, "o", 1);
+            var PPRowsOrder:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(PPRows, "o", 0);
 
-            var firstRow:Row = tableBox.rowList.addByObject(PPRowsFirstLine[0]);
-            firstRow.htmlElement.classList.add('firstLine');
+            if (PPRowsOwn.length == 0) {
+                var PPRowsOrderFirstLine = PPRowsOrder.slice(0, 1);
+                var PPRowsOrderMidLines = PPRowsOrder.slice(1, 3);
+                var PPRowsOrderGroup = PPRowsOrder.slice(3);
 
-            PPRowsMidLine.forEach(PPRow => {
-                if(PPRow.o == 1){
-                    var row:Row = tableBox.rowList.addByObject(PPRow);
-                    row.htmlElement.style.backgroundColor = '#eea236';
-                }else{
+                var row:Row = tableBox.rowList.addByObject(PPRowsOrderFirstLine[0]);
+                row.htmlElement.classList.add('firstLine');
+
+                PPRowsOrderMidLines.forEach(PPRow => {
                     tableBox.rowList.addByObject(PPRow);
-                }
-            });
-
-            if (PPRowsEnd.length > 0) {
-                var descriptionGroup2:string = "Показать остальные предложения " + PPRowsEnd[0].mfd + " " + PPRowsEnd[0].n + " (" + PPRowsEnd.length + ")";
-                var rowListGroup2:RowList = tableBox.rowList.addGroupItems(descriptionGroup2, true);
-                PPRowsEnd.forEach(PPRow => {
-                        rowListGroup2.addByObject(PPRow);
                 });
+
+                if (PPRowsOrderGroup.length > 0) {
+                    var descriptionGroup2:string = "Показать остальные предложения " + PPRowsOrderGroup[0].mfd + " " + PPRowsOrderGroup[0].n + " (" + PPRowsOrderGroup.length + ")";
+
+                    var RowListState = getRowListState() || {};
+                    if (RowListState[product.i] == 0) {var expand:boolean = true;}
+                    else {var expand:boolean = false;}
+
+                    var rowListGroup2:RowList = tableBox.rowList.addGroupItems(descriptionGroup2, expand, product.i.toString());
+                    PPRowsOrderGroup.forEach(PPRow => {
+                        rowListGroup2.addByObject(PPRow);
+                    });
+                }
+            }
+            else if (PPRowsOwn.length == 1){
+                var row:Row = tableBox.rowList.addByObject(PPRowsOwn[0]);
+                row.htmlElement.style.fontWeight = 'bold';
+                row.htmlElement.classList.add('firstLine');
+
+                    var PPRowsOrderMidLines = PPRowsOrder.slice(0, 3);
+                    var PPRowsOrderGroup = PPRowsOrder.slice(3);
+
+                    PPRowsOrderMidLines.forEach(PPRow => {
+                        tableBox.rowList.addByObject(PPRow);
+                    });
+
+                    if (PPRowsOrderGroup.length > 0) {
+                        var descriptionGroup2:string = "Показать остальные предложения " + PPRowsOrderGroup[0].mfd + " " + PPRowsOrderGroup[0].n + " (" + PPRowsOrderGroup.length + ")";
+
+                        var RowListState = getRowListState() || {};
+                        if (RowListState[product.i] == 0) {var expand:boolean = true;}
+                        else {var expand:boolean = false;}
+
+                        var rowListGroup2:RowList = tableBox.rowList.addGroupItems(descriptionGroup2, expand, product.i.toString());
+                        PPRowsOrderGroup.forEach(PPRow => {
+                            rowListGroup2.addByObject(PPRow);
+                        });
+                    }
+            }
+            else{
+                var PPRowsOwnFirstLine = PPRowsOwn.slice(0, 1);
+                var PPRowsOwnMidLines = PPRowsOwn.slice(1);
+
+                var row:Row = tableBox.rowList.addByObject(PPRowsOwnFirstLine[0]);
+                row.htmlElement.style.fontWeight = 'bold';
+                row.htmlElement.classList.add('firstLine');
+
+                PPRowsOwnMidLines.forEach(OwnRow =>{
+                    var row:Row = tableBox.rowList.addByObject(OwnRow);
+                    row.htmlElement.style.fontWeight = 'bold';
+
+                });
+
+                    var PPRowsOrderMidLines = PPRowsOrder.slice(0, 3);
+                    var PPRowsOrderGroup = PPRowsOrder.slice(3);
+
+                    PPRowsOrderMidLines.forEach(PPRow => {
+                        tableBox.rowList.addByObject(PPRow);
+                    });
+
+                    if (PPRowsOrderGroup.length > 0) {
+                        var descriptionGroup2:string = "Показать остальные предложения " + PPRowsOrderGroup[0].mfd + " " + PPRowsOrderGroup[0].n + " (" + PPRowsOrderGroup.length + ")";
+
+                        var RowListState = getRowListState() || {};
+                        if (RowListState[product.i] == 0) {var expand:boolean = true;}
+                        else {var expand:boolean = false;}
+
+                        var rowListGroup2:RowList = tableBox.rowList.addGroupItems(descriptionGroup2, expand, product.i.toString());
+                        PPRowsOrderGroup.forEach(PPRow => {
+                            rowListGroup2.addByObject(PPRow);
+                        });
+                    }
             }
 
-            /*var descriptionGroup3:string = "Свернуть список предложений";
-             var row1:Row = Row;
-             rowListGroup2.addByObject(row1);*/
-
-            /*if(PPRows.length < 4){
-                PPRows.forEach(PPRow => {
-                    if(PPRow.o == 1){
-                        var row:Row = tableBox.rowList.addByObject(PPRow);
-                        row.htmlElement.style.backgroundColor = '#eea236';
-                    }else{
-                        tableBox.rowList.addByObject(PPRow);
-                    }
-                });
-            }else if (PPRows.length > 3){
-                PPRows.forEach(PPRow => {
-                    if(PPRow. == 1){
-                        var row:Row = tableBox.rowList.addByObject(PPRow);
-                        row.htmlElement.style.backgroundColor = '#eea236';
-                    }else{
-                        tableBox.rowList.addByObject(PPRow);
-                    }
-                });
-            }*/
-
             var ARows:Array<Analog> = Arrays.filterByField<Analog>(pll.analogListLight.a, "pi", product.i);
-
-            var APPRows:Array<PriceProduct> = new Array<PriceProduct>();
+            //var APPRows:Array<PriceProduct> = new Array<PriceProduct>();
                 //var APPRowsFirstLine = APPRows.slice(0, 1);
                 //var firstARow:Row = tableBox.rowList.addByObject(APPRowsFirstLine[0]);
                 //firstARow.htmlElement.classList.add('firstLine');
-
-            var descriptionGroup:string = "Аналоги";
+            //var descriptionGroup:string = "Аналоги";
+            var Manufacturer:Array<Manufacturer> = Arrays.filterByField<Manufacturer>(pll.manufacturerListLight.mf, "i", product.mfi);
             if (ARows.length > 0) {
-                var descriptionGroup:string = "Аналоги" + " (" + ARows.length + ")";
-                var rowListGroup:RowList = tableBox.rowList.addGroup(descriptionGroup, true);
 
+                var APPRowsRebuild:Array<PriceProduct> = [];
                 ARows.forEach(ARow => {
                     var APPRows:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(pll.priceProductListLight.p, "pi", ARow.pia);
-
-                    new SortArray(<any>APPRows).sort("o", SortDirection.DESC);
-
-                    var ownCount:number = Arrays.filterByField<PriceProduct>(APPRows, "o", 1).length;
-
-
-                    var APPRowsFirstLine = APPRows.slice(0, 1);
-                    var APPRowsMidLine = APPRows.slice(1, 3);
-                    var APPRowsEnd = APPRows.slice(3);
-
-                    APPRowsFirstLine.forEach(APPRow => {
-                        if(APPRow.o == 1){
-                            var row:Row = rowListGroup.addByObject(APPRow);
-                            row.htmlElement.style.backgroundColor = '#eea236';
-                            row.htmlElement.classList.add('firstLineAnalog');
-                        }else{
-                            var row:Row = rowListGroup.addByObject(APPRow);
-                            row.htmlElement.classList.add('firstLineAnalog');
-                        }
+                    APPRows.forEach(APPRow =>{
+                        APPRowsRebuild.push(APPRow);
                     });
-                    APPRowsMidLine.forEach(APPRow => {
-                        if(APPRow.o == 1){
-                            var row:Row = rowListGroup.addByObject(APPRow);
-                            row.htmlElement.style.backgroundColor = '#eea236';
 
-                        }else{
-                            var row:Row = rowListGroup.addByObject(APPRow);
+                    // new SortArray(<any>APPRows).sort("o", SortDirection.DESC);
+                    //var ownCount:number = Arrays.filterByField<PriceProduct>(APPRows, "o", 1).length;
 
-                        }
-                    });
-                    if (APPRowsEnd.length > 0) {
-                        var descriptionGroup2:string = "Показать остальные предложения " + APPRowsEnd[0].mfd + " " + PPRowsEnd[0].n + " (" + APPRowsEnd.length + ")";
-                        var rowListGroup2:RowList = rowListGroup.addGroupItems(descriptionGroup2, true);
-                        APPRowsEnd.forEach(APPRow => {
-                            rowListGroup2.addByObject(APPRow);
-                        });
-                    }
+                    // var APPRowsFirstLine = APPRows.slice(0, 1);
+                    // var APPRowsMidLine = APPRows.slice(1, 3);
+                    // var APPRowsEnd = APPRows.slice(3);
+                    //
+                    // APPRowsFirstLine.forEach(APPRow => {
+                    //     if(APPRow.o == 1){
+                    //         var row:Row = rowListGroup.addByObject(APPRow);
+                    //         row.htmlElement.style.backgroundColor = '#eea236';
+                    //         row.htmlElement.classList.add('firstLineAnalog');
+                    //     }else{
+                    //         var row:Row = rowListGroup.addByObject(APPRow);
+                    //         row.htmlElement.classList.add('firstLineAnalog');
+                    //     }
+                    // });
+                    // APPRowsMidLine.forEach(APPRow => {
+                    //     if(APPRow.o == 1){
+                    //         var row:Row = rowListGroup.addByObject(APPRow);
+                    //         row.htmlElement.style.backgroundColor = '#eea236';
+                    //
+                    //     }else{
+                    //         rowListGroup.addByObject(APPRow);
+                    //
+                    //     }
+                    // });
+                    // if (APPRowsEnd.length > 0) {
+                    //     var descriptionGroup2:string = "Показать остальные предложения " + APPRowsEnd[0].mfd + " " + PPRowsEnd[0].n + " (" + APPRowsEnd.length + ")";
+                    //     var rowListGroup2:RowList = rowListGroup.addGroupItems(descriptionGroup2, true);
+                    //     APPRowsEnd.forEach(APPRow => {
+                    //         rowListGroup2.addByObject(APPRow);
+                    //     });
+                    // }
 
                 });
+                var APPRowsRebuildOwn:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(APPRowsRebuild, "o", 1);
+                var APPRowsRebuildOrder:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(APPRowsRebuild, "o", 0);
 
+                var descriptionGroup:string = "Аналоги для " + Manufacturer[0].ds + " " + product.ns + "        заменителей: (" + ARows.length + ")     ценовых предложений: (" + APPRowsRebuild.length + ")";
+                var RowListState = getRowListState();
+                var asdfg:string = product.i.toString() + 'a';
+                if (RowListState[asdfg] == 0) {var expand:boolean = true;}
+                else {var expand:boolean = false;}
 
+                var rowListGroup:RowList = tableBox.rowList.addGroup(descriptionGroup, expand, product.i.toString()+'a');
+
+               //new SortArray(<any>result).sort("p1", SortDirection.ASC);
+
+                APPRowsRebuildOwn.forEach(APPRow => {
+                    if (APPRow.p1 > 0){
+                        var row:Row = rowListGroup.addByObject(APPRow);
+                        row.htmlElement.style.fontWeight = 'bold';
+                    }
+                    //var row:Row = rowListGroup.addByObject(ResultAnalog);
+                });
+
+                var APPRowsRebuildOrderMidLines = APPRowsRebuildOrder.slice(0, 10);
+                var APPRowsRebuildOrderGroup = APPRowsRebuildOrder.slice(10);
+
+                APPRowsRebuildOrderMidLines.forEach(APPRow => {
+                    rowListGroup.addByObject(APPRow);
+                });
+
+                if (APPRowsRebuildOrderGroup.length > 0) {
+                    var descriptionGroup2:string = "Показать остальные предложения по аналогам (" + APPRowsRebuildOrderGroup.length + ")";
+
+                    var RowListState = getRowListState();
+                    var asdfg:string = product.i.toString() + 'ae';
+                    if (RowListState[asdfg] == 0) {var expand:boolean = true;}
+                    else {var expand:boolean = false;}
+
+                    var rowListGroup2:RowList = rowListGroup.addGroupItems(descriptionGroup2, expand, product.i.toString()+'ae');
+                    APPRowsRebuildOrderGroup.forEach(APPRow => {
+                        rowListGroup2.addByObject(APPRow);
+                    });
+                }
             }
-
-
-               /* for (var key = 0; key < APPRows.length; ++key) {
-                    var APPRow:any = APPRows[key];
-
-                    if( key == 0 || APPRow.pi !== APPRows[key-1].pi){
-                        if(APPRow.o == 1){
-                            var row:Row = rowListGroup.addByObject(APPRow);
-                            row.htmlElement.style.backgroundColor = '#eea236';
-                            row.htmlElement.classList.add('firstLineAnalog');
-                        }else{
-                            var row:Row = rowListGroup.addByObject(APPRow);
-                            row.htmlElement.classList.add('firstLineAnalog');
-                        }
-                    }
-                    else {
-                        if(APPRow.o == 1){
-                            var row:Row = rowListGroup.addByObject(APPRow);
-                            row.htmlElement.style.backgroundColor = '#eea236';
-
-                        }else{
-                            var row:Row = rowListGroup.addByObject(APPRow);
-                            //row.htmlElement.classList.add('firstLine');
-                        }
-                    }
-                }*/
-
         });
     }
 }
@@ -272,7 +321,7 @@ class priceListLightViewUser {
     private findType:string;
     private findValue:string;
 
-    public  onChange(control:TextBox):void {
+    /*public  onChange(control:TextBox):void {
         var self = this;
 
         this.findValue = control.getValue();
@@ -292,9 +341,7 @@ class priceListLightViewUser {
         //        self.onDataGet(pll)
         //    }
         //);
-
-
-    }
+    }*/
 
     constructor() {
         var form:Form = new Form();
@@ -352,6 +399,7 @@ class priceListLightViewUser {
             sort = new SortArray(<any>this.pll.productListLight.p);
             sort.sort("ns", sortDirection);
         }
+
 
         Report.update(this.pll, this.tableBox, this.findType, this.findValue);
     }
