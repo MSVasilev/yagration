@@ -28,21 +28,21 @@ class RowListStatic {
             classList.remove("fa-minus-square-o");
             classList.add("fa-plus-square-o");
             //(<HTMLElement>td.firstChild).style.display = "initial";
-            (<HTMLElement>td.childNodes[1]).style.display = "none";
+            (<HTMLElement>td.childNodes[1]).style.display = "initial";
 
             asd[classExpandable[0]] = 0;
             setRowListState(asd);
-            console.log(localStorage);
+            //console.log(localStorage);
 
         } else {
             classList.remove("fa-plus-square-o");
             classList.add("fa-minus-square-o");
-            //(<HTMLElement>td.firstChild).style.display = "none";
-            (<HTMLElement>td.childNodes[1]).style.display = "initial";
+            //(<HTMLElement>td.firstChild).style.display = "initial";
+            (<HTMLElement>td.childNodes[1]).style.display = "none";
 
             asd[classExpandable[0]] = 1;
             setRowListState(asd);
-            console.log(localStorage);
+            //console.log(localStorage);
 
         }
     }
@@ -54,22 +54,22 @@ class RowListStatic {
         if (classList.contains("fa-minus-square-o")) {
             classList.remove("fa-minus-square-o");
             classList.add("fa-plus-square-o");
-            //(<HTMLElement>td.firstChild).style.display = "initial";
-            (<HTMLElement>td.childNodes[1]).style.display = "none";
+            (<HTMLElement>td.firstChild).style.display = "none";
+            (<HTMLElement>td.childNodes[1]).style.display = "initial";
 
             asd[classExpandable[0]] = 0;
             setRowListState(asd);
-            console.log(localStorage);
+            //console.log(localStorage);
 
         } else {
             classList.remove("fa-plus-square-o");
             classList.add("fa-minus-square-o");
-            //(<HTMLElement>td.firstChild).style.display = "none";
-            (<HTMLElement>td.childNodes[1]).style.display = "initial";
+            (<HTMLElement>td.firstChild).style.display = "initial";
+            (<HTMLElement>td.childNodes[1]).style.display = "none";
 
             asd[classExpandable[0]] = 1;
             setRowListState(asd);
-            console.log(localStorage);
+            //console.log(localStorage);
 
 
 

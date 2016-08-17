@@ -6,7 +6,7 @@ class Report {
     tableBox.rowList.clear();
 
     //var sort:SortArray = new SortArray(<any>pll.priceProductListLight.p);
-    //sort.sort("o", SortDirection.DESC);
+    //sort.sort("p1", SortDirection.ASC);
 
     if(findType == "d"){
         Report.ByDescription(tableBox, pll);
@@ -48,7 +48,7 @@ class Report {
                     var descriptionGroup2:string = "Показать остальные предложения " + PPRowsOrderGroup[0].mfd + " " + PPRowsOrderGroup[0].n + " (" + PPRowsOrderGroup.length + ")";
 
                     var RowListState = getRowListState() || {};
-                    if (RowListState[product.i] == 0) {var expand:boolean = true;}
+                    if (RowListState[product.i] == 0 || RowListState[product.i] === null) {var expand:boolean = true;}
                     else {var expand:boolean = false;}
 
                     var rowListGroup2:RowList = tableBox.rowList.addGroupItems(descriptionGroup2, expand, product.i.toString());
@@ -73,7 +73,7 @@ class Report {
                         var descriptionGroup2:string = "Показать остальные предложения " + PPRowsOrderGroup[0].mfd + " " + PPRowsOrderGroup[0].n + " (" + PPRowsOrderGroup.length + ")";
 
                         var RowListState = getRowListState() || {};
-                        if (RowListState[product.i] == 0) {var expand:boolean = true;}
+                        if (RowListState[product.i] == 0 || RowListState[product.i] === null) {var expand:boolean = true;}
                         else {var expand:boolean = false;}
 
                         var rowListGroup2:RowList = tableBox.rowList.addGroupItems(descriptionGroup2, expand, product.i.toString());
@@ -107,7 +107,7 @@ class Report {
                         var descriptionGroup2:string = "Показать остальные предложения " + PPRowsOrderGroup[0].mfd + " " + PPRowsOrderGroup[0].n + " (" + PPRowsOrderGroup.length + ")";
 
                         var RowListState = getRowListState() || {};
-                        if (RowListState[product.i] == 0) {var expand:boolean = true;}
+                        if (RowListState[product.i] == 0 || RowListState[product.i] === null) {var expand:boolean = true;}
                         else {var expand:boolean = false;}
 
                         var rowListGroup2:RowList = tableBox.rowList.addGroupItems(descriptionGroup2, expand, product.i.toString());
@@ -126,61 +126,71 @@ class Report {
             var Manufacturer:Array<Manufacturer> = Arrays.filterByField<Manufacturer>(pll.manufacturerListLight.mf, "i", product.mfi);
             if (ARows.length > 0) {
 
-                var APPRowsRebuild:Array<PriceProduct> = [];
+                var values:any = [];
                 ARows.forEach(ARow => {
-                    var APPRows:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(pll.priceProductListLight.p, "pi", ARow.pia);
-                    APPRows.forEach(APPRow =>{
-                        APPRowsRebuild.push(APPRow);
-                    });
-
-                    // new SortArray(<any>APPRows).sort("o", SortDirection.DESC);
-                    //var ownCount:number = Arrays.filterByField<PriceProduct>(APPRows, "o", 1).length;
-
-                    // var APPRowsFirstLine = APPRows.slice(0, 1);
-                    // var APPRowsMidLine = APPRows.slice(1, 3);
-                    // var APPRowsEnd = APPRows.slice(3);
-                    //
-                    // APPRowsFirstLine.forEach(APPRow => {
-                    //     if(APPRow.o == 1){
-                    //         var row:Row = rowListGroup.addByObject(APPRow);
-                    //         row.htmlElement.style.backgroundColor = '#eea236';
-                    //         row.htmlElement.classList.add('firstLineAnalog');
-                    //     }else{
-                    //         var row:Row = rowListGroup.addByObject(APPRow);
-                    //         row.htmlElement.classList.add('firstLineAnalog');
-                    //     }
-                    // });
-                    // APPRowsMidLine.forEach(APPRow => {
-                    //     if(APPRow.o == 1){
-                    //         var row:Row = rowListGroup.addByObject(APPRow);
-                    //         row.htmlElement.style.backgroundColor = '#eea236';
-                    //
-                    //     }else{
-                    //         rowListGroup.addByObject(APPRow);
-                    //
-                    //     }
-                    // });
-                    // if (APPRowsEnd.length > 0) {
-                    //     var descriptionGroup2:string = "Показать остальные предложения " + APPRowsEnd[0].mfd + " " + PPRowsEnd[0].n + " (" + APPRowsEnd.length + ")";
-                    //     var rowListGroup2:RowList = rowListGroup.addGroupItems(descriptionGroup2, true);
-                    //     APPRowsEnd.forEach(APPRow => {
-                    //         rowListGroup2.addByObject(APPRow);
-                    //     });
-                    // }
-
+                    values.push(ARow.pia);
                 });
+                var APPRowsRebuild:Array<PriceProduct> = Arrays.filterByFields<PriceProduct>(pll.priceProductListLight.p, "pi", values);
+
+                // var APPRowsRebuild:Array<PriceProduct> = [];
+                //
+                // ARows.forEach(ARow => {
+                //     var APPRows:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(pll.priceProductListLight.p, "pi", ARow.pia);
+                //
+                //     APPRows.forEach(APPRow =>{
+                //         APPRowsRebuild.push(APPRow);
+                //     });
+                //
+                //     //var ownCount:number = Arrays.filterByField<PriceProduct>(APPRows, "o", 1).length;
+                //
+                //     // var APPRowsFirstLine = APPRows.slice(0, 1);
+                //     // var APPRowsMidLine = APPRows.slice(1, 3);
+                //     // var APPRowsEnd = APPRows.slice(3);
+                //     //
+                //     // APPRowsFirstLine.forEach(APPRow => {
+                //     //     if(APPRow.o == 1){
+                //     //         var row:Row = rowListGroup.addByObject(APPRow);
+                //     //         row.htmlElement.style.backgroundColor = '#eea236';
+                //     //         row.htmlElement.classList.add('firstLineAnalog');
+                //     //     }else{
+                //     //         var row:Row = rowListGroup.addByObject(APPRow);
+                //     //         row.htmlElement.classList.add('firstLineAnalog');
+                //     //     }
+                //     // });
+                //     // APPRowsMidLine.forEach(APPRow => {
+                //     //     if(APPRow.o == 1){
+                //     //         var row:Row = rowListGroup.addByObject(APPRow);
+                //     //         row.htmlElement.style.backgroundColor = '#eea236';
+                //     //
+                //     //     }else{
+                //     //         rowListGroup.addByObject(APPRow);
+                //     //
+                //     //     }
+                //     // });
+                //     // if (APPRowsEnd.length > 0) {
+                //     //     var descriptionGroup2:string = "Показать остальные предложения " + APPRowsEnd[0].mfd + " " + PPRowsEnd[0].n + " (" + APPRowsEnd.length + ")";
+                //     //     var rowListGroup2:RowList = rowListGroup.addGroupItems(descriptionGroup2, true);
+                //     //     APPRowsEnd.forEach(APPRow => {
+                //     //         rowListGroup2.addByObject(APPRow);
+                //     //     });
+                //     // }
+                //
+                // });
+
+                //new SortArray(<any>APPRowsRebuild).sort("p1", SortDirection.ASC);
+
                 var APPRowsRebuildOwn:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(APPRowsRebuild, "o", 1);
                 var APPRowsRebuildOrder:Array<PriceProduct> = Arrays.filterByField<PriceProduct>(APPRowsRebuild, "o", 0);
 
                 var descriptionGroup:string = "Аналоги для " + Manufacturer[0].ds + " " + product.ns + "        заменителей: (" + ARows.length + ")     ценовых предложений: (" + APPRowsRebuild.length + ")";
-                var RowListState = getRowListState();
+                var RowListState = getRowListState() || {};
                 var asdfg:string = product.i.toString() + 'a';
-                if (RowListState[asdfg] == 0) {var expand:boolean = true;}
+                if (RowListState[asdfg] == 0 || RowListState[product.i] === null) {var expand:boolean = true;}
                 else {var expand:boolean = false;}
 
                 var rowListGroup:RowList = tableBox.rowList.addGroup(descriptionGroup, expand, product.i.toString()+'a');
 
-               //new SortArray(<any>result).sort("p1", SortDirection.ASC);
+
 
                 APPRowsRebuildOwn.forEach(APPRow => {
                     if (APPRow.p1 > 0){
@@ -200,9 +210,9 @@ class Report {
                 if (APPRowsRebuildOrderGroup.length > 0) {
                     var descriptionGroup2:string = "Показать остальные предложения по аналогам (" + APPRowsRebuildOrderGroup.length + ")";
 
-                    var RowListState = getRowListState();
+                    var RowListState = getRowListState() || {};
                     var asdfg:string = product.i.toString() + 'ae';
-                    if (RowListState[asdfg] == 0) {var expand:boolean = true;}
+                    if (RowListState[asdfg] == 0 || RowListState[product.i] === null) {var expand:boolean = true;}
                     else {var expand:boolean = false;}
 
                     var rowListGroup2:RowList = rowListGroup.addGroupItems(descriptionGroup2, expand, product.i.toString()+'ae');
@@ -290,7 +300,7 @@ class priceListLightView {
     public sort(field:Field, sortDirection:SortDirection) {
         var sort:SortArray = new SortArray(<any>this.pll.priceProductListLight.p);
 
-        sort.sort(field.getId(), sortDirection);
+        //sort.sort(field.getId(), sortDirection);
         //sort.sort("o", SortDirection.ASC);
 
 
@@ -321,7 +331,7 @@ class priceListLightViewUser {
     private findType:string;
     private findValue:string;
 
-    /*public  onChange(control:TextBox):void {
+    public  onChange(control:TextBox):void {
         var self = this;
 
         this.findValue = control.getValue();
@@ -332,27 +342,30 @@ class priceListLightViewUser {
             this.findType = "n";
         }
 
-        $.getJSON("/products/?" + this.findType + "=" + this.findValue,
-            function(pll:PriceListLight){self.onDataGet(pll)}
-        );
+        // $.getJSON("/poisk/?" + this.findType + "=" + this.findValue,
+        //     function(pll:PriceListLight){self.onDataGet(pll)}
+        // );
 
-        //$.getJSON("priceListLight.json",
-        //    function (pll:PriceListLight) {
-        //        self.onDataGet(pll)
-        //    }
-        //);
-    }*/
+
+        $.getJSON("/products/priceListLight.json",
+           function (pll:PriceListLight) {
+               self.onDataGet(pll)
+           }
+        );
+    }
 
     constructor() {
+        $('#form').empty();
         var form:Form = new Form();
-        //var button:Button = <Button>form.createControl("Button");
-        //button.setHeight("20px");
-        //button.setWidth("70px");
-        //button.setDescription("Кнопка");
 
-        //var textBox:TextBox = <TextBox>form.createControl("TextBox");
-        //textBox.addControlEvent("change", this.onChange.bind(this));
-        //textBox.addControlEvent("keyup", this.onChange.bind(this));
+        // var button:Button = <Button>form.createControl("Button");
+        // button.setHeight("20px");
+        // button.setWidth("70px");
+        // button.setDescription("Кнопка");
+        //
+        // var textBox:TextBox = <TextBox>form.createControl("TextBox");
+        // textBox.addControlEvent("change", this.onChange.bind(this));
+        // textBox.addControlEvent("keyup", this.onChange.bind(this));
 
         this.tableBox = <TableBox>form.createControl("TableBox");
         this.tableBox.setWidth("100%");
@@ -374,14 +387,23 @@ class priceListLightViewUser {
 
         this.tableBox.header.setSortFunction(this.sort.bind(this));
 
+
+
+        //var ArtNumber = $('#headerSearch').val();
+        var ArtNumber =  (window.location.pathname).split('/');
+
+
         this.findType = "n";
-        this.findValue = "w753";
+        this.findValue = ArtNumber[2];
         var self = this;
         $.getJSON("/products/priceListLight.json",
             function (pll:PriceListLight) {
-                self.onDataGet(pll)
+                self.onDataGet(pll);
+
             }
         );
+
+
 
     }
 
@@ -396,7 +418,7 @@ class priceListLightViewUser {
             sort = new SortArray(<any>this.pll.manufacturerListLight.mf);
             sort.sort("ds", sortDirection);
         }else if(field.getId() === "n"){
-            sort = new SortArray(<any>this.pll.productListLight.p);
+            sort = new SortArray(<any>this.pll.priceProductListLight.p);
             sort.sort("ns", sortDirection);
         }
 
@@ -408,6 +430,7 @@ class priceListLightViewUser {
         this.pll = pll;
 
         Report.update(pll, this.tableBox, this.findType, this.findValue);
+
     }
 }
 

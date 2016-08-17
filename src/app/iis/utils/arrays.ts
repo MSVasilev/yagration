@@ -54,4 +54,21 @@ class Arrays {
 
         return resultArray;
     }
+
+    static filterByFields<T>(array:Array<T>, fieldName:string, values:Array<any>):Array<T> {
+
+        var resultArray:Array<T> = new Array;
+        array.forEach(obj => {
+             values.forEach(value =>{
+                 if ((<any>obj)[fieldName] === value) {
+                     resultArray.push(obj);
+                 }
+             })   
+        });
+
+        return resultArray;
+    }
+    
+    
+    
 }

@@ -5,7 +5,7 @@ function setRowListState(o:string) {
     localStorage.setItem('rowListGroupExpandState', JSON.stringify(o));
     return false;
 }
-function deleteRowListState(o:string) {
+function deleteRowListState() {
     localStorage.removeItem("rowListGroupExpandState");
     return false;
 }
@@ -19,3 +19,8 @@ function setLocalStorage(o:string) {
     localStorage.setItem('ecarex.ru', JSON.stringify(o));
     return false;
 }
+
+function av(){
+   
+    
+};

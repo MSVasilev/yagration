@@ -14,8 +14,18 @@ $(document).ready(function(){
         });
     }
     else if ((window.location.pathname).indexOf('poisk') !== -1){
-        $(document).ready(function ($:any) {
+        $('#form').ready(function ($:any) {
+            deleteRowListState();
+            var qwert =  (window.location.pathname).split('/');
+            //console.log(qwert[2]);
+            $('.productCardTitle h1').attr('title',qwert[2]);
+            $('.productCardTitle h1').html(qwert[2]);
+            $('#breadcrumbsCategory1 a span').html('поиск по артикулу');
+
             new priceListLightViewUser();
+            
+            
+            //new priceListLightViewUser();
         });
     }
     else if ((window.location.pathname).indexOf('catalog') !== -1){
